@@ -34,9 +34,21 @@ exports.getProjects = async (req, res) => {
 
     try {
 
-        const projects = await Project.find({
+        const { search } = req.query;
+
+        let filter = {
             owner: req.user.id
-        });
+        };
+
+       
+        if (search) {
+            filter.title = {
+                $regex: search,
+                $options: "i"
+            };
+        }
+
+        const projects = await Project.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
 
         res.json(projects);
 

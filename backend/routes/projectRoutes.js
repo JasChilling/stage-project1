@@ -1,6 +1,8 @@
 const express = require("express");
 const protect = require("../middleware/authMiddleware");
 const router = express.Router();
+const validation = require("../middleware/validationMiddleware");
+const { projectValidation } = require("../validators/projectValidator");
 const {
     createProject,
     getProjects,
@@ -9,7 +11,7 @@ const {
     deleteProject
 } = require("../controllers/projectController");
 
-router.post("/", protect, createProject);
+router.post("/", protect, projectValidation, validation, createProject);
 router.get("/", protect, getProjects);
 router.get("/:id", protect, getProjectById);
 router.put("/:id", protect, updateProject);
