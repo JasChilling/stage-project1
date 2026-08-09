@@ -34,9 +34,21 @@ exports.getProjects = async (req, res) => {
 
     try {
 
-        const projects = await Project.find({
+        const { search } = req.query;
+
+        let filter = {
             owner: req.user.id
-        });
+        };
+
+        // If the user typed something in the search bar
+        if (search) {
+            filter.title = {
+                $regex: search,
+                $options: "i"
+            };
+        }
+
+        const projects = await Project.find(filter);
 
         res.json(projects);
 

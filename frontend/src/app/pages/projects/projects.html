@@ -1,0 +1,240 @@
+<div class="projects-container">
+
+  <div class="page-header">
+
+    <div>
+      <h1>My Projects</h1>
+      <p>Manage your projects and tasks.</p>
+    </div>
+
+    <button
+      class="create-button"
+      (click)="openCreateForm()">
+
+      + Create Project
+
+    </button>
+
+  </div>
+
+
+  <!-- Error message -->
+
+  @if (errorMessage) {
+
+    <div class="error-message">
+      {{ errorMessage }}
+    </div>
+
+  }
+
+
+  <!-- Create Project Form -->
+
+  @if (showForm) {
+
+    <div class="form-container">
+
+      <h2>Create New Project</h2>
+
+      <form (ngSubmit)="createProject()">
+
+        <!-- Title -->
+
+        <div class="form-group">
+
+          <label for="title">
+            Project Title
+          </label>
+
+          <input
+            id="title"
+            type="text"
+            [(ngModel)]="newProject.title"
+            name="title"
+            placeholder="Enter project title"
+            required
+          >
+
+        </div>
+
+
+        <!-- Description -->
+
+        <div class="form-group">
+
+          <label for="description">
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            [(ngModel)]="newProject.description"
+            name="description"
+            placeholder="Enter project description">
+          </textarea>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="form-group">
+
+          <label for="status">
+            Status
+          </label>
+
+          <select
+            id="status"
+            [(ngModel)]="newProject.status"
+            name="status">
+
+            <option value="Planning">
+              Planning
+            </option>
+
+            <option value="In Progress">
+              In Progress
+            </option>
+
+            <option value="Completed">
+              Completed
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Priority -->
+
+        <div class="form-group">
+
+          <label for="priority">
+            Priority
+          </label>
+
+          <select
+            id="priority"
+            [(ngModel)]="newProject.priority"
+            name="priority">
+
+            <option value="Low">
+              Low
+            </option>
+
+            <option value="Medium">
+              Medium
+            </option>
+
+            <option value="High">
+              High
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- Deadline -->
+
+        <div class="form-group">
+
+          <label for="deadline">
+            Deadline
+          </label>
+
+          <input
+            id="deadline"
+            type="date"
+            [(ngModel)]="newProject.deadline"
+            name="deadline"
+          >
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="form-buttons">
+
+          <button
+            type="submit"
+            class="save-button">
+
+            Create Project
+
+          </button>
+
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="closeCreateForm()">
+
+            Cancel
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  }
+
+
+  <!-- Projects -->
+
+  <div class="projects-list">
+
+    @if (projects.length === 0 && !showForm) {
+
+      <div class="empty-state">
+
+        <h2>No projects yet</h2>
+
+        <p>Create your first project to get started.</p>
+
+      </div>
+
+    }
+
+
+    @for (project of projects; track project._id) {
+
+      <div class="project-card">
+
+        <h2>
+          {{ project.title }}
+        </h2>
+
+        <p>
+          {{ project.description }}
+        </p>
+
+        <div class="project-info">
+
+          <span>
+            Status: {{ project.status }}
+          </span>
+
+          <span>
+            Priority: {{ project.priority }}
+          </span>
+
+          <span>
+            Deadline:
+            {{ project.deadline | date }}
+          </span>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
