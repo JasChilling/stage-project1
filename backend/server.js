@@ -3,6 +3,7 @@ const dns = require("dns");
 dns.setServers(["8.8.8.8", "1.1.1.1"]);
 const taskRoutes = require("./routes/taskRoutes");
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDatabase = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
@@ -14,6 +15,7 @@ dotenv.config();
 const app = express();
 
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
