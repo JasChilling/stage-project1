@@ -1,1 +1,92 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+
+  <h1>Dashboard</h1>
+
+  <p class="subtitle">
+    Welcome back! Here's an overview of your projects and tasks.
+  </p>
+
+
+  
+
+  @if (loading) {
+
+    <p>Loading dashboard...</p>
+
+  }
+
+
+ 
+
+  @if (errorMessage) {
+
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+
+  }
+
+
+  
+
+  @if (!loading && dashboardData) {
+
+    <div class="stats-grid">
+
+
+      
+
+      <div class="stat-card">
+
+        <h2>Projects</h2>
+
+        <p class="number">
+          {{ dashboardData.totalProjects }}
+        </p>
+
+      </div>
+
+
+      
+      <div class="stat-card">
+
+        <h2>Total Tasks</h2>
+
+        <p class="number">
+          {{ dashboardData.totalTasks }}
+        </p>
+
+      </div>
+
+
+      
+
+      <div class="stat-card">
+
+        <h2>Completed</h2>
+
+        <p class="number">
+          {{ dashboardData.completedTasks }}
+        </p>
+
+      </div>
+
+
+      
+
+      <div class="stat-card">
+
+        <h2>Pending</h2>
+
+        <p class="number">
+          {{ dashboardData.pendingTasks }}
+        </p>
+
+      </div>
+
+
+    </div>
+
+  }
+
+</div>
