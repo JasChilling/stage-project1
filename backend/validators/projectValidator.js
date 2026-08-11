@@ -10,7 +10,7 @@ exports.projectValidation = [
 
     body("status")
         .optional()
-        .isIn(["Planning","In Progress","Completed"])
+        .isIn(["Not Started","In Progress","Completed"])
         .withMessage("Invalid status"),
 
     body("priority")

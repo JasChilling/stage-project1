@@ -1,15 +1,127 @@
-<div class="profile">
+<div class="profile-page">
 
-  <h1>My Profile</h1>
+    <div class="profile-card">
 
-  <div class="profile-card">
+        <div class="profile-picture">
 
-    <h2>Profile</h2>
+            @if (user.profilePicture) {
 
-    <p>
-      Manage your account information.
-    </p>
+                <img
+                    [src]="user.profilePicture"
+                    alt="Profile picture"
+                >
 
-  </div>
+            } @else {
+
+                <div class="default-picture">
+                    {{ user.name.charAt(0).toUpperCase() }}
+                </div>
+
+            }
+
+        </div>
+
+
+        @if (!editing) {
+
+            <h1>{{ user.name }}</h1>
+
+            <p class="email">
+                {{ user.email }}
+            </p>
+
+            <p class="bio">
+
+                @if (user.bio) {
+
+                    {{ user.bio }}
+
+                } @else {
+
+                    No bio yet.
+
+                }
+
+            </p>
+
+
+            <button
+                type="button"
+                (click)="editProfile()"
+            >
+                Edit Profile
+            </button>
+
+        }
+
+
+        @if (editing) {
+
+            <div class="edit-form">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="user.name"
+                >
+
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    [(ngModel)]="user.email"
+                >
+
+
+                <label>
+                    Bio
+                </label>
+
+                <textarea
+                    [(ngModel)]="user.bio"
+                    placeholder="Tell us something about yourself..."
+                ></textarea>
+
+
+                <label>
+                    Profile picture URL
+                </label>
+
+                <input
+                    type="text"
+                    [(ngModel)]="user.profilePicture"
+                    placeholder="https://..."
+                >
+
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        (click)="saveProfile()"
+                    >
+                        Save
+                    </button>
+
+                    <button
+                        type="button"
+                        (click)="cancelEdit()"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+
+        }
+
+    </div>
 
 </div>

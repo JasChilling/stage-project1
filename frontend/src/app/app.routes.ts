@@ -18,12 +18,10 @@ export const routes: Routes = [
     path: 'register',
     component: Register
   },
-
   {
-    path: 'profile',
-    loadComponent: () => import('./pages/profile/profile').then(m => m.ProfileComponent)
+  path: 'profile',
+  loadComponent: () => import('./pages/profile/profile').then(m => m.Profile)
   },
-
   {
     path: 'dashboard',
     component: Dashboard

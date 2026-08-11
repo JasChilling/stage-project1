@@ -9,7 +9,7 @@ const connectDatabase = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
 const projectRoutes = require("./routes/projectRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
-
+const profileRoutes = require("./routes/profileRoutes");
 dotenv.config();
 
 const app = express();
@@ -21,7 +21,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/tasks", taskRoutes);
-
+app.use("/api/profile", profileRoutes);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
