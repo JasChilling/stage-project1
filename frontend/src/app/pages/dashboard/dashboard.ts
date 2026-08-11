@@ -1,21 +1,23 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
+  imports: [],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard implements OnInit {
 
-  private dashboardService = inject(DashboardService);
+  totalProjects = 0;
+  totalTasks = 0;
+  completedTasks = 0;
 
-  dashboardData: any = null;
+  recentProjects: any[] = [];
 
-  loading = true;
-
-  errorMessage = '';
+  constructor(
+    private dashboardService: DashboardService
+  ) {}
 
   ngOnInit(): void {
 
@@ -31,19 +33,17 @@ export class Dashboard implements OnInit {
 
         console.log('Dashboard data:', data);
 
-        this.dashboardData = data;
+        this.totalProjects = data.totalProjects;
+        this.totalTasks = data.totalTasks;
+        this.completedTasks = data.completedTasks;
 
-        this.loading = false;
+        this.recentProjects = data.recentProjects;
 
       },
 
       error: (error) => {
 
         console.error('Dashboard error:', error);
-
-        this.errorMessage = 'Could not load dashboard data.';
-
-        this.loading = false;
 
       }
 

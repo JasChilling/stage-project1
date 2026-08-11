@@ -1,92 +1,87 @@
 <div class="dashboard">
 
-  <h1>Dashboard</h1>
+  <div class="dashboard-header">
 
-  <p class="subtitle">
-    Welcome back! Here's an overview of your projects and tasks.
-  </p>
+    <h1>Dashboard</h1>
 
+    <p>Welcome back!</p>
 
-  
-
-  @if (loading) {
-
-    <p>Loading dashboard...</p>
-
-  }
+  </div>
 
 
- 
-
-  @if (errorMessage) {
-
-    <p class="error">
-      {{ errorMessage }}
-    </p>
-
-  }
+  <div class="stats">
 
 
-  
+    <div class="stat-card">
 
-  @if (!loading && dashboardData) {
+      <h3>Projects</h3>
 
-    <div class="stats-grid">
-
-
-      
-
-      <div class="stat-card">
-
-        <h2>Projects</h2>
-
-        <p class="number">
-          {{ dashboardData.totalProjects }}
-        </p>
-
-      </div>
-
-
-      
-      <div class="stat-card">
-
-        <h2>Total Tasks</h2>
-
-        <p class="number">
-          {{ dashboardData.totalTasks }}
-        </p>
-
-      </div>
-
-
-      
-
-      <div class="stat-card">
-
-        <h2>Completed</h2>
-
-        <p class="number">
-          {{ dashboardData.completedTasks }}
-        </p>
-
-      </div>
-
-
-      
-
-      <div class="stat-card">
-
-        <h2>Pending</h2>
-
-        <p class="number">
-          {{ dashboardData.pendingTasks }}
-        </p>
-
-      </div>
-
+      <p>{{ totalProjects }}</p>
 
     </div>
 
-  }
+
+    <div class="stat-card">
+
+      <h3>Tasks</h3>
+
+      <p>{{ totalTasks }}</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <h3>Completed</h3>
+
+      <p>{{ completedTasks }}</p>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="recent-projects">
+
+    <h2>Recent Projects</h2>
+
+
+    @if (recentProjects.length === 0) {
+
+      <p>No projects yet.</p>
+
+    }
+
+
+    @for (project of recentProjects; track project._id) {
+
+      <div class="project-card">
+
+        <h3>
+          {{ project.title }}
+        </h3>
+
+        <p>
+          {{ project.description }}
+        </p>
+
+        <div class="project-details">
+
+          <span>
+            Status: {{ project.status }}
+          </span>
+
+          <span>
+            Priority: {{ project.priority }}
+          </span>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
 
 </div>

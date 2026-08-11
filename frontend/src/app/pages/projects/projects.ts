@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { ProjectService } from '../../services/project';
 
 @Component({
@@ -36,25 +35,33 @@ export class Projects implements OnInit {
     this.loadProjects();
   }
 
-  loadProjects(): void {
+loadProjects(): void {
 
-    this.projectService.getProjects().subscribe({
+  this.projectService.getProjects().subscribe({
 
-      next: (data) => {
-        this.projects = data;
-      },
+    next: (data) => {
 
-      error: (error) => {
-        console.error(error);
+      console.log('Projects loaded:', data);
 
-        this.errorMessage =
-          error.error?.message ||
-          'Failed to load projects';
-      }
+      this.projects = [...data];
 
-    });
+      console.log('Projects array after assignment:', this.projects);
+      console.log('Number of projects:', this.projects.length);
 
-  }
+    },
+
+    error: (error) => {
+
+      console.error('Failed to load projects:', error);
+
+      this.errorMessage =
+        error.error?.message || 'Failed to load projects';
+
+    }
+
+  });
+
+}
 
   openCreateForm(): void {
 

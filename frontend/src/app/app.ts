@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
+import { NavbarComponent } from './components/navbar';
 import {
   provideHttpClient,
   withInterceptors
@@ -31,7 +31,7 @@ export const appConfig: ApplicationConfig = {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
