@@ -1,1 +1,87 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+
+  <div class="dashboard-header">
+
+    <h1>Dashboard</h1>
+
+    <p>Welcome back!</p>
+
+  </div>
+
+
+  <div class="stats">
+
+
+    <div class="stat-card">
+
+      <h3>Projects</h3>
+
+      <p>{{ totalProjects }}</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <h3>Tasks</h3>
+
+      <p>{{ totalTasks }}</p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <h3>Completed</h3>
+
+      <p>{{ completedTasks }}</p>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="recent-projects">
+
+    <h2>Recent Projects</h2>
+
+
+    @if (recentProjects.length === 0) {
+
+      <p>No projects yet.</p>
+
+    }
+
+
+    @for (project of recentProjects; track project._id) {
+
+      <div class="project-card">
+
+        <h3>
+          {{ project.title }}
+        </h3>
+
+        <p>
+          {{ project.description }}
+        </p>
+
+        <div class="project-details">
+
+          <span>
+            Status: {{ project.status }}
+          </span>
+
+          <span>
+            Priority: {{ project.priority }}
+          </span>
+
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

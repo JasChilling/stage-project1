@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
-import {RouterLink} from '@angular/router';
+import {Router , RouterLink} from '@angular/router';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class Login {
 
   errorMessage = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
 
@@ -32,6 +32,7 @@ export class Login {
 
         console.log('Login successful!');
         console.log(response);
+        this.router.navigate(['/dashboard']);
 
       },
 

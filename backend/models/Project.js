@@ -13,14 +13,22 @@ const projectSchema = new mongoose.Schema(
             enum: ['Not Started', 'In Progress', 'Completed'],
             default: 'Not Started'
         },
+        priority: {
+            type: String,
+            enum: ['Low', 'Medium', 'High'],
+            default: 'Medium'
+      },
+
         deadline: {
             type: Date
         },
         owner: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'}
-        },
-        {
+            ref: 'User',
+            required: true
+        }
+    },
+    {
         timestamps: true
         }
 );

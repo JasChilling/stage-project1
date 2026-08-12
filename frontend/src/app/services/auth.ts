@@ -37,7 +37,7 @@ export class AuthService {
     return this.http.post<any>(
       `${this.apiUrl}/register`,
       {
-        username,
+        name: username,
         email,
         password
       }

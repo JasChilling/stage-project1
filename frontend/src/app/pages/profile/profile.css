@@ -1,0 +1,75 @@
+.profile-page {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    width: 500px;
+    padding: 35px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-picture {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture img,
+.default-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profile-picture img {
+    object-fit: cover;
+}
+
+.default-picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ddd;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.email {
+    color: #777;
+}
+
+.bio {
+    margin: 25px 0;
+    line-height: 1.6;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+}
+
+.edit-form input,
+.edit-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.edit-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
